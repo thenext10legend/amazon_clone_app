@@ -1,23 +1,24 @@
-console.log("Hello World"); //print("Hello  world");
+//IMPORTS FROM PACKAGES
+const express=require('express');
+const mongoose=require('mongoose');
 
-const express=require('express');   //import '';
+//IMPORTS FROM OTHER FILES
+const authRouter=require('./routes/auth');
 
+//INIT
 const PORT = 3000;
-
 const app=express();
+const DB="mongodb+srv://Shivam_Jhunjhunwala:ljt6e4bsH!@cluster0.k8ncs09.mongodb.net/?retryWrites=true&w=majority";
 
-//CREATING AN API
-// GET, PUT, POST, DELETE, UPDATE --> CRUD
+//middleware
+app.use(authRouter);
 
-//GET
-// http://<youripaddress>/hell0-world
-app.get("/hello-world",(req,res)=>{
-    res.send("hello world");
-})
-
-app.get("/",(req,res)=>{
-    res.json({"Name":"Shivam"});
-})
+//Connections
+mongoose.connect(DB).then(()=>{
+    console.log("Connection Successful");
+}).catch((e)=>{
+    console.log(e);
+});
 
 app.listen(PORT,  ()=>{
     console.log(`connected at port ${PORT}...Bye`);
