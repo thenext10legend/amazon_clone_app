@@ -11,6 +11,7 @@ const app=express();
 const DB="mongodb+srv://Shivam_Jhunjhunwala:ljt6e4bsH!@cluster0.k8ncs09.mongodb.net/?retryWrites=true&w=majority";
 
 //middleware
+app.use(express.json());
 app.use(authRouter);
 
 //Connections
