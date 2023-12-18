@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
             validator: (value)=>{ 
                 return value.length >=6;
             },
-            message: 'Please enter a long password.'
+            message: 'Please enter a long password. '
         },
     },
     address: {

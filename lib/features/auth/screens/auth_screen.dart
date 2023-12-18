@@ -42,6 +42,13 @@ class _AuthScreenState extends State<AuthScreen> {
         context: context);
   }
 
+  void signInUser() {
+    authService.signInUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +135,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   padding: const EdgeInsets.all(8),
                   color: GlobalVariables.backgroundColor,
                   child: Form(
-                      key: _signUpFormKey,
+                      key: _signInFormKey,
                       child: Column(
                         children: [
                           CustomTextField(
@@ -141,7 +148,13 @@ class _AuthScreenState extends State<AuthScreen> {
                             hintText: "Password",
                           ),
                           const SizedBox(height: 10),
-                          CustomButton(text: "Sign In", onPressed: () {})
+                          CustomButton(
+                              text: "Sign In",
+                              onPressed: () {
+                                if (_signInFormKey.currentState!.validate()) {
+                                  signInUser();
+                                }
+                              })
                         ],
                       )),
                 ),
